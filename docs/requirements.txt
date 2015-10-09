@@ -1,0 +1,4 @@
+sphinx
+sphinxcontrib-napoleon
+[u'readthedocs', u'sphinx-py3doc-enhanced-theme']
+-e .

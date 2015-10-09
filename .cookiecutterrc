@@ -1,0 +1,34 @@
+# This file exists so you can easily regenerate your project.
+#
+# Unfortunately cookiecutter can't use this right away so
+# you have to copy this file to ~/.cookiecutterrc
+
+default_context:
+
+    appveyor:                  "[u'yes', u'no']"
+    c_extension_optional:      "[u'no', u'yes']"
+    c_extension_support:       'no'
+    codacy:                    "[u'no', u'yes']"
+    codeclimate:               "[u'no', u'yes']"
+    codecov:                   "[u'yes', u'no']"
+    command_line_interface:    'click'
+    coveralls:                 'yes'
+    distribution_name:         'pandas_cli'
+    email:                     'miguel.fiandor.gutierrez@gmail.com'
+    full_name:                 'Miguel Fiandor Guti\xe9rrez'
+    github_username:           'miguelfg'
+    landscape:                 "[u'no', u'yes']"
+    package_name:              'pandas_cli'
+    project_name:              'Pandas CLI'
+    project_short_description: 'A command line interface for Pandas library, hence a cool and useful toolbox for handling data'
+    release_date:              "[u'today', u'2025-01-01']"
+    repo_name:                 'pandas-cli'
+    requiresio:                "[u'yes', u'no']"
+    scrutinizer:               "[u'no', u'yes']"
+    sphinx_theme:              "[u'readthedocs', u'sphinx-py3doc-enhanced-theme']"
+    test_matrix_configurator:  "[u'no', u'yes']"
+    test_runner:               "[u'pytest', u'nose']"
+    travis:                    "[u'yes', u'no']"
+    version:                   '0.1.0'
+    website:                   'none'
+    year:                      "[u'now', u'2015', u'2014-2015']"
