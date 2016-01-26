@@ -2,4 +2,4 @@
 Authors
 =======
 
-* Miguel Fiandor Gutiérrez - none
+* Miguel Fiandor Gutiérrez
