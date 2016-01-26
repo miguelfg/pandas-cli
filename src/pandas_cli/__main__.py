@@ -36,3 +36,24 @@ def main(paths):
 if __name__ == "__main__":
     sys.exit(main())
 
+
+# TODO: EXAMPLE OF DESIRED COMMAND LINES
+# > pd <input_paths>
+# > pd <input_paths> --cols a,b,c
+# > pd <input_paths> --cols a,b,c --drop_duplicates all
+# > pd <input_paths> --cols a,b,c --drop_duplicates b,c
+
+# > pd.create 10x3 --cols id,speed,mass -dt int,float,float
+# > pd.create 10x3 --cols id,speed,mass -dt int,float,float <output_file>
+
+# > pd.merge <input_paths>
+# > pd.concat <input_paths>
+
+# > pd.left_join <input_paths>
+# > pd.left_outer_join <input_paths>
+# > pd.right_join <input_paths>
+# > pd.right_outer_join <input_paths>
+# > pd.full_join <input_paths>
+# > pd.full_outer_join <input_paths>
+
+# > pd
