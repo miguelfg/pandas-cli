@@ -69,7 +69,7 @@ setup(
     },
     entry_points={
         'console_scripts': [
-            'pandas_cli = pandas_cli.__main__:main',
+            'pd = pandas_cli.__main__:main',
         ]
     },
 )

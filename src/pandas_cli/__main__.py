@@ -22,12 +22,16 @@ logger.addHandler(ch)
 
 
 @click.command()
-@click.argument('path', nargs=-1, default=None)
-def main(path):
+@click.argument('paths',
+                type=click.Path(exists=True, dir_okay=True, file_okay=True, readable=True),
+                nargs=-1,
+                default=None)
+def main(paths):
     """
     """
-    df = pd.read_csv(path)
-    click.echo(df.head(10))
+    for p in paths:
+        df = pd.read_csv(p)
+        click.echo(df.head(10))
 
 if __name__ == "__main__":
     sys.exit(main())
