@@ -47,7 +47,11 @@ if __name__ == "__main__":
 # > pd.create 10x3 --cols id,speed,mass -dt int,float,float <output_file>
 
 # > pd.merge <input_paths>
+
 # > pd.concat <input_paths>
+
+# > pd <input_paths> --groupby b
+# > pd <input_paths> --groupby b,c
 
 # > pd.left_join <input_paths>
 # > pd.left_outer_join <input_paths>
@@ -55,5 +59,8 @@ if __name__ == "__main__":
 # > pd.right_outer_join <input_paths>
 # > pd.full_join <input_paths>
 # > pd.full_outer_join <input_paths>
+
+# > pd <input_paths> --plot b,c --kind bar
+# > pd <input_paths> --plot b,c --kind scatter
 
 # > pd
