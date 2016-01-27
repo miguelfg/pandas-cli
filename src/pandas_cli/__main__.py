@@ -21,17 +21,41 @@ formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(messag
 logger.addHandler(ch)
 
 
+class PDCLI():
+    def __init__(self, cols, paths):
+        """"""
+        self.cols = cols
+        self.paths = paths
+        self.in_dfs = []
+        self.out_dfs = []
+
+    def read(self):
+        for p in self.paths:
+            self.in_dfs.append(pd.read_csv(p, usecols=self.cols))
+
+    def echo(self):
+        if self.out_dfs:
+            pass
+        else:
+            for df in self.in_dfs:
+                click.echo(df.head(10))
+
+    def run(self):
+        self.read()
+        self.echo()
+
+
 @click.command()
+@click.option('--cols', default=None, help='List of column names to use')
 @click.argument('paths',
                 type=click.Path(exists=True, dir_okay=True, file_okay=True, readable=True),
                 nargs=-1,
                 default=None)
-def main(paths):
+def main(cols, paths):
     """
     """
-    for p in paths:
-        df = pd.read_csv(p)
-        click.echo(df.head(10))
+    pdcli = PDCLI(cols, paths)
+    pdcli.run()
 
 if __name__ == "__main__":
     sys.exit(main())
@@ -40,13 +64,20 @@ if __name__ == "__main__":
 # TODO: EXAMPLE OF DESIRED COMMAND LINES
 # > pd <input_paths>
 # > pd <input_paths> --cols a,b,c
+# > pd <input_paths> --cols 1,3
 # > pd <input_paths> --cols a,b,c --drop_duplicates all
 # > pd <input_paths> --cols a,b,c --drop_duplicates b,c
+# > pd <input_paths> --cols a,b,c --drop_duplicates b,c --drop_nas a,c
+# > pd <input_paths> --cols a,b,c --filter a=10,b!='hello'
+# > pd <input_paths> --cols a,b,c --filter d>=01/01/2016
 
-# > pd.create 10x3 --cols id,speed,mass -dt int,float,float
-# > pd.create 10x3 --cols id,speed,mass -dt int,float,float <output_file>
+# > pd.create 10x3
+# > pd.create 10 --cols id,speed,mass -dt int,float,float
+# > pd.create 10 --cols id,speed,mass -dt int,float,float <output_file>
 
 # > pd.merge <input_paths>
+# > pd <input_paths> --merge
+# > pd <input_paths> --merge a
 
 # > pd.concat <input_paths>
 
