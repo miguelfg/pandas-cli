@@ -54,6 +54,14 @@ class PDCLI():
 def main(cols, paths):
     """
     """
+    click.echo("################")
+    click.echo("Show param values")
+    click.echo("################")
+    click.echo(cols)
+    click.echo(paths)
+    click.echo("################")
+    click.echo("################")
+
     pdcli = PDCLI(cols, paths)
     pdcli.run()
 
