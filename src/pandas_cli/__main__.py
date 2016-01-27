@@ -30,8 +30,13 @@ class PDCLI():
         self.out_dfs = []
 
     def read(self):
-        for p in self.paths:
-            self.in_dfs.append(pd.read_csv(p, usecols=self.cols))
+        """
+        """
+        click.echo("Reading input paths...")
+        for path in self.paths:
+            click.echo(path)
+            click.echo(self.cols)
+            self.in_dfs.append(pd.read_csv(path, usecols=self.cols))
 
     def echo(self):
         if self.out_dfs:
@@ -62,7 +67,8 @@ def main(cols, paths):
     click.echo("################")
     click.echo("################")
 
-    pdcli = PDCLI(cols, paths)
+    clean_cols = [col.strip() for col in cols.split(',')]
+    pdcli = PDCLI(clean_cols, paths)
     pdcli.run()
 
 if __name__ == "__main__":
