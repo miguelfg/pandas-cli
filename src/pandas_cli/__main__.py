@@ -33,9 +33,10 @@ class PDCLI():
         """
         """
         click.echo("Reading input paths...")
+        click.echo(self.paths)
+        click.echo(self.cols)
         for path in self.paths:
             click.echo(path)
-            click.echo(self.cols)
             self.in_dfs.append(pd.read_csv(path, usecols=self.cols))
 
     def echo(self):
@@ -50,13 +51,13 @@ class PDCLI():
         self.echo()
 
 
-@click.command()
+@click.group(invoke_without_command=True)
+@click.pass_context
 @click.option('--cols', default=None, help='List of column names to use')
 @click.argument('paths',
                 type=click.Path(exists=True, dir_okay=True, file_okay=True, readable=True),
-                nargs=-1,
                 default=None)
-def main(cols, paths):
+def main(ctx,   cols, paths):
     """
     """
     click.echo("################")
@@ -67,9 +68,30 @@ def main(cols, paths):
     click.echo("################")
     click.echo("################")
 
-    clean_cols = [col.strip() for col in cols.split(',')]
-    pdcli = PDCLI(clean_cols, paths)
-    pdcli.run()
+    if isinstance(paths, (unicode, str, basestring)):
+        paths = [paths]
+
+    if cols:
+        clean_cols = [col.strip() for col in cols.split(',')]
+    else:
+        clean_cols = None
+
+    pd_cli = PDCLI(clean_cols, paths)
+    pd_cli.run()
+
+
+@click.command()
+@click.pass_context
+@click.option('--subset', default=None, help='Only consider certain columns for identifying duplicates, by default use all of the columns')
+@click.option('--keep', default=None, help='{‘first’, ‘last’, False}, default ‘first’')
+def drop_duplicates(ctx, subset, keep):
+    """
+    """
+    click.echo("dropping dups!")
+
+
+main.add_command(drop_duplicates)
+
 
 if __name__ == "__main__":
     sys.exit(main())
